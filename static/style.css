@@ -2,3 +2,8 @@ body {
     padding-top: 70px;
     padding-bottom: 70px;
 }
+
+div#content {
+    max-width: 60%;
+    margin: auto;
+}

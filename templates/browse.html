@@ -1,18 +1,16 @@
 {% extends "base.html" %}
 
-{% set dirs = path[:-1].split('/') %}
-
 {% block title %}Index of {{path}}{% endblock %}
 
 {% block navbar %}
     <ul class="nav navbar-nav">
-        {% for dir in dirs %}
-            {% if dir == dirs|last %}
+        {% for entry in nav %}
+            {% if entry == nav|last %}
                 <li class="active">
             {% else %}
                 <li>
             {% endif %}
-            <a href="/browse/{{dir}}"><span class="glyphicon glyphicon-chevron-right"></span> /{{dir}}</a></li>
+            <a href="/browse/{{entry[0]}}"><span class="glyphicon glyphicon-chevron-right"></span> {{entry[1]}}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
@@ -21,9 +19,9 @@
     {% if folders|length > 0 %}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">Subdirectories</h1>
+                <h1 class="panel-title"><strong class="glyphicon glyphicon-folder-open"></strong> Subdirectories</h1>
             </div>
-            <table class="table">
+            <table class="table table-striped">
                 {% for folder in folders %}
                     <tr>
                         <td>
@@ -39,9 +37,9 @@
     {% if files|length > 0 %}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">Files</h1>
+                <h1 class="panel-title"><strong class="glyphicon glyphicon-file"></strong> Files</h1>
             </div>
-            <table class="table">
+            <table class="table table-striped">
                 {% for file in files %}
                     <tr>
                         <td>
