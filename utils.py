@@ -53,4 +53,3 @@ def populate_navbar(path):
                 entries.append([entries[index - 1][0] + os.sep + navlist[index], navlist[index]])
 
     return entries
-

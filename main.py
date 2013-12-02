@@ -37,20 +37,21 @@ def browse(path=''):
                     files.append(entry)
                 else:
                     folders.append(entry)
-        finally:
+        except OSError:
+            return flask.abort(404)
+        else:
             nav = utils.populate_navbar(path)
             folders.sort()
             files.sort()
             return flask.render_template('browse.html', path=path, nav=nav, folders=folders, files=files)
-
-    return flask.abort(404)
+    else:
+        return flask.abort(404)
 
 
 @web.route('/info')
 @web.route('/info/<path:path>')
 def info(path=''):
     fullpath = flask.request.environ['DOCUMENT_ROOT'] + os.sep + path
-    properties = []
 
     if os.path.isfile(fullpath):
         try:
@@ -59,8 +60,10 @@ def info(path=''):
                 ['Size', utils.get_size(fullpath)],
                 ['Mimetype', utils.get_mime(fullpath)],
             ]
-        finally:
+        except OSError:
+            return flask.abort(404)
+        else:
             nav = utils.populate_navbar(path)
             return flask.render_template('info.html', path=path, nav=nav, properties=properties)
-
-    return flask.abort(404)
+    else:
+        return flask.abort(404)
