@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% set dirs = path[:-1].split('/') %}
+
+{% block title %}Index of {{path}}{% endblock %}
+
+{% block navbar %}
+    <ul class="nav navbar-nav">
+        {% for dir in dirs %}
+            {% if dir == dirs|last %}
+                <li class="active">
+            {% else %}
+                <li>
+            {% endif %}
+            <a href="/browse/{{dir}}"><span class="glyphicon glyphicon-chevron-right"></span> /{{dir}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+    {% if folders|length > 0 %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Subdirectories</h1>
+            </div>
+            <table class="table">
+                {% for folder in folders %}
+                    <tr>
+                        <td>
+                            <strong class="glyphicon glyphicon-folder-close"></strong>
+                            <a href="/browse{{path}}{{folder}}">{{folder}}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+    {% if files|length > 0 %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Files</h1>
+            </div>
+            <table class="table">
+                {% for file in files %}
+                    <tr>
+                        <td>
+                            <strong class="glyphicon glyphicon-file"></strong>
+                            <a href="/info{{path}}{{file}}">{{file}}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %} 
+{% endblock %}
