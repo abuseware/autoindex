@@ -8,6 +8,18 @@ Advantages over httpd built-in generators
   * Customizable
   * Skinnable
 
+Disadvantages
+================================================================================
+  * Possibly much slower than built-in one
+  * Cannot access files over "real" /static dir (can be fixed with httpd config)
+
+Requirements
+================================================================================
+  * Python 3.1 or newer
+  * Flask 0.10 or newer
+  * UWSGI or other WSGI/FastCGI wrapper
+  * Standalone HTTP server (Apache, Lighttpd, NGINX, ...)
+
 How to launch?
 ================================================================================
 Use UWSGI daemon, ex:
