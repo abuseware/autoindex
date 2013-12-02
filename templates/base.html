@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="pl">
 
-    <head>
-        <title>{% block title %}{% endblock %} - AutoIndex</title>
+<head>
+    <title>{% block title %}{% endblock %} - AutoIndex</title>
 
-        <meta name="author" content="Licho"/>
-        <meta name="description" content="Automatic Index generator"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Licho"/>
+    <meta name="description" content="Automatic Index generator"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <meta name="robots" content="index, follow"/>
-        <meta name="revisit-after" content="3 days"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="revisit-after" content="3 days"/>
 
-        <meta charset="utf-8"/>
+    <meta charset="utf-8"/>
 
-        <link rel="shortcut icon" href="/static/favicon.png"/>
-        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css"/>
-        <link rel="stylesheet" href="/static/style.css"/>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/static/style.css"/>
 
-        <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
 
-    </head>
+</head>
 
-    <body>
-        <div class="container">
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">    
-                <a class="navbar-brand" href="/browse">Root</a>
-                {% block navbar %}{% endblock %}
-                <p class="navbar-text navbar-right">AutoIndex</p>
-            </nav>
-            <div id="content">
-                {% block content %}{% endblock %}
-            </div>
-            <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-                <p class="navbar-text navbar-right">&copy; 2013 by <a href="https://bitbucket.org/licho">Licho</a></p>
-            </nav>
-        </div>
-    </body>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <a class="navbar-brand" href="/browse">Root</a>
+        {% block navbar %}{% endblock %}
+        <p class="navbar-text navbar-right">AutoIndex</p>
+    </nav>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <p class="navbar-text navbar-right">&copy; 2013 by <a href="https://bitbucket.org/licho">Licho</a></p>
+    </nav>
+</div>
+</body>
 </html>

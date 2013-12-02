@@ -3,52 +3,52 @@
 {% block title %}Index of {{path}}{% endblock %}
 
 {% block navbar %}
-    <ul class="nav navbar-nav">
-        {% for entry in nav %}
-            {% if entry == nav|last %}
-                <li class="active">
-            {% else %}
-                <li>
-            {% endif %}
-            <a href="/browse/{{entry[0]}}"><span class="glyphicon glyphicon-chevron-right"></span> {{entry[1]}}</a></li>
-        {% endfor %}
-    </ul>
+<ul class="nav navbar-nav">
+    {% for entry in nav %}
+    {% if entry == nav|last %}
+    <li class="active">
+        {% else %}
+    <li>
+        {% endif %}
+        <a href="/browse/{{entry[0]}}"><span class="glyphicon glyphicon-chevron-right"></span> {{entry[1]}}</a></li>
+    {% endfor %}
+</ul>
 {% endblock %}
 
 {% block content %}
-    {% if folders|length > 0 %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h1 class="panel-title"><strong class="glyphicon glyphicon-folder-open"></strong> Subdirectories</h1>
-            </div>
-            <table class="table table-striped">
-                {% for folder in folders %}
-                    <tr>
-                        <td>
-                            <strong class="glyphicon glyphicon-folder-close"></strong>
-                            <a href="/browse{{path}}{{folder}}">{{folder}}</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    {% endif %}
+{% if folders|length > 0 %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong class="glyphicon glyphicon-folder-open"></strong> Subdirectories</h1>
+    </div>
+    <table class="table table-striped">
+        {% for folder in folders %}
+        <tr>
+            <td>
+                <strong class="glyphicon glyphicon-folder-close"></strong>
+                <a href="/browse{{path}}{{folder}}">{{folder}}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
 
-    {% if files|length > 0 %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h1 class="panel-title"><strong class="glyphicon glyphicon-file"></strong> Files</h1>
-            </div>
-            <table class="table table-striped">
-                {% for file in files %}
-                    <tr>
-                        <td>
-                            <strong class="glyphicon glyphicon-file"></strong>
-                            <a href="/info{{path}}{{file}}">{{file}}</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    {% endif %} 
+{% if files|length > 0 %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><strong class="glyphicon glyphicon-file"></strong> Files</h1>
+    </div>
+    <table class="table table-striped">
+        {% for file in files %}
+        <tr>
+            <td>
+                <strong class="glyphicon glyphicon-file"></strong>
+                <a href="/info{{path}}{{file}}">{{file}}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
 {% endblock %}
