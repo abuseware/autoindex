@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Index of {{path}}{% endblock %}
+{% block title %}Index of /{% if path != "." %}{{path}}{% endif %}{% endblock %}
 
 {% block navbar %}
 <ul class="nav navbar-nav">
@@ -26,7 +26,7 @@
         <tr>
             <td>
                 <strong class="glyphicon glyphicon-folder-close"></strong>
-                <a href="/browse{{path}}{{folder}}">{{folder}}</a>
+                <a href="/browse/{% if path != "." %}{{path}}/{% endif %}{{folder}}">{{folder}}</a>
             </td>
         </tr>
         {% endfor %}
@@ -44,7 +44,7 @@
         <tr>
             <td>
                 <strong class="glyphicon glyphicon-file"></strong>
-                <a href="/info{{path}}{{file}}">{{file}}</a>
+                <a href="/info/{% if path != "." %}{{path}}/{% endif %}{{file}}">{{file}}</a>
             </td>
         </tr>
         {% endfor %}

@@ -6,50 +6,52 @@ import mimetypes
 mimetypes.init()
 
 
-def fill_path(path):
-    if path[:1] != '/':
-        path = '/' + path
-    if path[-1:] != '/':
-        path += '/'
-
-    return path
-
-
 def get_size(path):
+    """
+    @param path: Normalized path
+    @return: Human readable file size
+    @rtype: str
+    """
+    power = 0
     power_map = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
 
-    siz = os.path.getsize(path)
-    power = 0
+    try:
+        siz = os.path.getsize(path)
 
-    while siz > 1024:
-        siz /= 1024
-        power += 1
+        while siz > 1024:
+            siz /= 1024
+            power += 1
 
-    return '{} {}'.format(round(siz, 2), power_map[power])
+    except OSError as e:
+        return 'Error {}: {}'.format(e.errno, e.strerror)
+
+    else:
+        return '{} {}'.format(round(siz, 2), power_map[power])
 
 
 def get_mime(path):
+    """
+    @param path: Normalized file path
+    @return: Guessed mime type
+    @rtype : str
+    """
     mime = mimetypes.guess_type(path)[0]
     if not mime:
-        mime = "application/octet-stream"
+        mime = 'application/octet-stream'
 
     return mime
 
 
 def populate_navbar(path):
-    if path[-1:] == os.sep:
-        path = path[:-1]
-    if path[:1] == os.sep:
-        path = path[1:]
-
+    """
+    @param path: Normalized file path
+    @return: List of relative path and entry name pairs
+    @rtype: list
+    """
     entries = []
-    navlist = path.split(os.sep)
 
-    if len(navlist) > 0 and navlist[0] != '':
-        for index in range(len(navlist)):
-            if index == 0:
-                entries.append([navlist[index], navlist[index]])
-            else:
-                entries.append([entries[index - 1][0] + os.sep + navlist[index], navlist[index]])
-
+    while not path in ('', '.'):
+        temp = os.path.split(path)
+        entries.insert(0, [path, temp[1]])
+        path = temp[0]
     return entries

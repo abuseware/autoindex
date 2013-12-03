@@ -13,12 +13,12 @@
             <span class="glyphicon glyphicon-chevron-right"></span> {{entry[1]}}</a></li>
         {% endfor %}
 </ul>
-{% endblock %}]
+{% endblock %}
 
 {% block content %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h1 class="panel-title"><strong class="glyphicon glyphicon-file"></strong> {{nav|last|last}}</h1>
+        <h1 class="panel-title"><strong class="glyphicon glyphicon-file"></strong> File details</h1>
     </div>
     <table class="table table-striped">
         <thead>
@@ -36,7 +36,7 @@
         {% endfor %}
         <tr>
             <td>Download</td>
-            <td><a class="btn btn-primary btn-xs" role="button" href="/get/{{nav|last|first}}">Direct link</a></td>
+            <td><a class="btn btn-primary btn-xs" role="button" href="/get/{{path}}">Direct link</a></td>
         </tr>
         </tbody>
     </table>
