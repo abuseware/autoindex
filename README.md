@@ -11,7 +11,6 @@ Advantages over httpd built-in generators
 Disadvantages
 ================================================================================
   * Possibly much slower than built-in one
-  * Cannot access files over "real" /static dir (can be fixed with httpd config)
 
 Requirements
 ================================================================================
