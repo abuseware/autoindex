@@ -31,6 +31,7 @@ Example of use with NGINX
         root /var/www/public_html;
 
         try_files $uri @autoindex;
+        error_page 403 =200 @browse;
 
         location /static {
             alias /var/www/autoindex/static;
@@ -45,5 +46,9 @@ Example of use with NGINX
         location @autoindex {
             include uwsgi_params;
             uwsgi_pass unix:/tmp/autoindex.sock;
+        }
+        
+        location @browse {
+            rewrite ^ /browse/ redirect;
         }
     }
