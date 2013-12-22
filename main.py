@@ -52,7 +52,7 @@ def browse(path=''):
             nav = utils.populate_navbar(path)
             folders.sort()
             files.sort()
-            return flask.render_template('browse.html', path=path, nav=nav, folders=folders, files=files)
+            return flask.render_template('browse.html', path=path, nav=nav, folders=folders, files=files, error=flask.request.args.get('error'))
 
     else:
         return flask.abort(404)
@@ -86,3 +86,10 @@ def info(path=''):
 
     else:
         return flask.abort(404)
+
+@web.errorhandler(403)
+@web.errorhandler(404)
+@web.errorhandler(410)
+@web.errorhandler(500)
+def ehandler(e):
+    return flask.redirect('/browse/?error={}'.format(e))
