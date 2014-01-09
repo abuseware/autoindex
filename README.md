@@ -2,7 +2,7 @@ What is it?
 ================================================================================
 AutoIndex is a small and fast index generator written in Python.
 
-Advantages over httpd built-in generators
+Advantages over httpd built-in
 ================================================================================
   * More info about files
   * Customizable
